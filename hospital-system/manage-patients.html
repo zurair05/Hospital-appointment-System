@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Patients - Hospital Appointment System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">🏥 HMS</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Admin Panel</h3>
+            <ul>
+                <li><a href="dashboard.html">📊 Dashboard</a></li>
+                <li><a href="manage-doctors.html">👨‍⚕️ Manage Doctors</a></li>
+                <li><a href="manage-patients.html" class="active">🧑 Manage Patients</a></li>
+                <li><a href="appointments.html">📅 Appointments</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Manage Patients</h2>
+                </div>
+
+                <table id="patient-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Gender</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ali Khan</td>
+                            <td>ali@email.com</td>
+                            <td>03011234567</td>
+                            <td>Male</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Sara Bibi</td>
+                            <td>sara@email.com</td>
+                            <td>03021234567</td>
+                            <td>Female</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Omar Ali</td>
+                            <td>omar@email.com</td>
+                            <td>03031234567</td>
+                            <td>Male</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Nadia Noor</td>
+                            <td>nadia@email.com</td>
+                            <td>03041234567</td>
+                            <td>Female</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Bilal Shah</td>
+                            <td>bilal@email.com</td>
+                            <td>03051234567</td>
+                            <td>Male</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Hospital Appointment System.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
