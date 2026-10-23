@@ -1,0 +1,12 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../config/admin.php';
+requireAdmin();
+$db = getDatabaseConnection();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $statement = $db->prepare('UPDATE appointments SET status=:status WHERE id=:id');
+    $statement->execute(['status' => $_POST['status'] ?? 'Pending', 'id' => (int) ($_POST['id'] ?? 0)]);
+}
+$appointments = $db->query('SELECT a.id,a.appointment_date,a.appointment_time,a.reason,a.status,p.name patient_name,d.name doctor_name FROM appointments a JOIN patients p ON p.id=a.patient_id JOIN doctors d ON d.id=a.doctor_id ORDER BY a.appointment_date DESC,a.appointment_time DESC')->fetchAll();
+?>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Appointments</title><link rel="stylesheet" href="../css/styles.css"></head><body><header class="header"><nav class="navbar"><div class="logo">🏥 HMS Admin</div><div class="nav-links"><a href="dashboard.php">Dashboard</a><a href="logout.php">Logout</a></div></nav></header><div class="layout"><aside class="sidebar"><h3>Admin Panel</h3><ul><li><a href="dashboard.php">📊 Dashboard</a></li><li><a href="patients.php">🧑 Patients</a></li><li><a href="doctors.php">👨‍⚕️ Doctors</a></li><li><a class="active" href="appointments.php">📅 Appointments</a></li></ul></aside><main class="main-content"><div class="table-container"><h2>Manage Appointments</h2><?= sessionStatusHtml() ?><table><thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Update</th></tr></thead><tbody><?php if (!$appointments): ?><tr><td colspan="7">No appointments found.</td></tr><?php endif; ?><?php foreach ($appointments as $appointment): ?><tr><td><?= e($appointment['patient_name']) ?></td><td><?= e($appointment['doctor_name']) ?></td><td><?= e($appointment['appointment_date']) ?></td><td><?= e($appointment['appointment_time']) ?></td><td><?= e($appointment['reason']) ?></td><td><?= e($appointment['status']) ?></td><td><form method="post"><input type="hidden" name="id" value="<?= e($appointment['id']) ?>"><select name="status"><option>Pending</option><option>Confirmed</option><option>Cancelled</option><option>Completed</option></select><button class="btn btn-primary btn-sm">Save</button></form></td></tr><?php endforeach; ?></tbody></table></div></main></div></body></html>
